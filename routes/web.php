@@ -13,6 +13,6 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router->get('/', 'BookController@index');
+
+$router->get('/preload', 'BookController@preloadBooks');

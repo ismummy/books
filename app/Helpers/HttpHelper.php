@@ -17,12 +17,17 @@ class HttpHelper
 
     public function getBook($id)
     {
-        return $this->request('/books/' . $id);
+        return $this->request('books/' . $id);
     }
 
-    public function getCharacter($id)
+    public function getCharacter($url)
     {
-        return $this->request('/characters/' . $id);
+        return $this->request($url);
+    }
+
+    public function getCharacterById($id)
+    {
+        return $this->request('characters/' . $id);
     }
 
     private function request($url)
