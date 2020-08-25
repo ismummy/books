@@ -14,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('GuzzleHttp\Client', function($api) use ($baseUrl) {
+        $baseUrl = env('BASE_URL');
+
+        $this->app->singleton('GuzzleHttp\Client', function ($api) use ($baseUrl) {
             return new Client([
                 'base_uri' => $baseUrl,
             ]);
