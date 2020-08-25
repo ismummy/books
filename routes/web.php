@@ -16,3 +16,5 @@
 $router->get('/', 'BookController@index');
 
 $router->get('/preload', 'BookController@preloadBooks');
+
+$router->get('/books', 'BookController@getBooks');
