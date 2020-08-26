@@ -77,7 +77,7 @@ class BookController extends Controller
 
         $comment = Comment::create([
             'book_id' => $bookId,
-            'name' => $request->input('name'),
+            'name' => $request->input('name','Anonymous'),
             'comment' => $request->input('comment'),
             'commenter_ip' => $ip
         ]);
