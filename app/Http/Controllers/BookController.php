@@ -31,6 +31,17 @@ class BookController extends Controller
         return $this->responseHelper->processResponse($books);
     }
 
+    public function getBook($bookId)
+    {
+        $book = Book::where('id', $bookId)->with(['authors', 'comments', 'characters'])->first();
+
+        if ($book) {
+            return $this->responseHelper->processResponse($book);
+        } else {
+            return $this->responseHelper->processResponse($book, 'not Found', true, 404);
+        }
+    }
+
     public function getCharacters(Request $request, $bookId)
     {
         $orderBy = $request->input('orderBy', 'id');
@@ -46,7 +57,11 @@ class BookController extends Controller
                 return $q->where('books.id', $bookId);
             })->orderBy($orderBy, $order)->get();
         }
-        return $this->responseHelper->processResponse($characters);
+        if ($characters) {
+            return $this->responseHelper->processResponse($characters);
+        } else {
+            return $this->responseHelper->processResponse($characters, 'not Found', true, 404);
+        }
     }
 
     public function getComments($bookId)
